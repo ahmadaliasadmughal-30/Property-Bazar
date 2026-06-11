@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EstateVault — Lahore Property Marketplace</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══ SIDEBAR (Navigation) ═══ -->
+  <aside class="sidebar animate-slide">
+    <div class="brand">
+      <div class="brand-icon logo-icon">🏛️</div>
+      <div>
+        <h1>EstateVault</h1>
+        <span>Lahore Marketplace</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" data-page="dashboard"><span class="icon">📊</span><span>Dashboard</span></div>
+      <div class="nav-item" data-page="login"><span class="icon">🔐</span><span>Login</span></div>
+      <div class="nav-item" data-page="register"><span class="icon">👤</span><span>Register</span></div>
+      <div class="nav-item" data-page="list"><span class="icon">➕</span><span>List Property</span></div>
+      <div class="nav-item" data-page="browse"><span class="icon">🔍</span><span>Browse</span></div>
+      <div class="nav-item" data-page="deal"><span class="icon">🤝</span><span>Record Deal</span></div>
+      <div class="nav-item" data-page="rentals"><span class="icon">🏠</span><span>Manage Rentals</span></div>
+      <div class="nav-item" data-page="history"><span class="icon">📋</span><span>History</span></div>
+    </nav>
+    <div class="sidebar-footer">
+      <div id="session-seller" class="session-badge hidden">🏷️ Seller: —</div>
+      <div id="session-buyer" class="session-badge hidden">🛒 Buyer: —</div>
+      <div class="footer-meta">MVC · Java · MySQL · HTML/CSS</div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main">
+
+    <!-- Dashboard -->
+    <section id="page-dashboard" class="page active page-enter">
+      <div class="hero hero-glow animate-fade-up">
+        <div class="hero-badge">● Live on localhost</div>
+        <h2>Your Lahore Property Hub</h2>
+        <p>Buy, sell, and rent houses, apartments, plots, and shops — with automatic commission tracking.</p>
+      </div>
+      <div class="stats-grid stagger">
+        <div class="stat-card"><div class="label">Registered Users</div><div class="value" id="stat-users">—</div></div>
+        <div class="stat-card"><div class="label">Available</div><div class="value accent" id="stat-available">—</div></div>
+        <div class="stat-card"><div class="label">Sold</div><div class="value info" id="stat-sold">—</div></div>
+        <div class="stat-card"><div class="label">Rented</div><div class="value gold" id="stat-rented">—</div></div>
+        <div class="stat-card"><div class="label">Transactions</div><div class="value" id="stat-tx">—</div></div>
+        <div class="stat-card"><div class="label">Total Commission</div><div class="value gold" id="stat-commission">—</div></div>
+      </div>
+      <div class="info-box animate-fade-up delay-3">
+        <strong>How it works</strong>
+        <ul>
+          <li>Register, then log in as a Seller or Buyer before listing or buying</li>
+          <li>Sellers list properties (House, Apartment, Plot, Shop)</li>
+          <li>Buyers search listings and record Buy or Rent deals</li>
+          <li>Rented properties can be renewed monthly or returned to sale</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Login -->
+    <section id="page-login" class="page">
+      <div class="page-header"><h2>Login</h2><p>Sign in as a seller or buyer before listing or purchasing properties.</p></div>
+      <div class="card form-card animate-fade-up">
+        <div class="role-toggle">
+          <button type="button" class="login-role-btn active" data-role="seller">🏷️ Seller Login</button>
+          <button type="button" class="login-role-btn" data-role="buyer">🛒 Buyer Login</button>
+        </div>
+        <form id="login-form">
+          <div class="form-grid">
+            <div class="form-group"><label>Account ID</label><input id="login-id" type="number" placeholder="e.g. 1" required></div>
+            <div class="form-group"><label>Email</label><input id="login-email" type="email" placeholder="ali@email.com" required></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="button" id="logout-btn" class="btn btn-ghost hidden">Logout</button>
+          <div id="login-toast" class="toast"></div>
+        </form>
+        <div class="info-box">
+          <strong>Need an account?</strong>
+          <p>Go to <em>Register</em> first, then return here with your ID and email.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Register -->
+    <section id="page-register" class="page">
+      <div class="page-header"><h2>Register User</h2><p>Create a buyer or seller account to start trading.</p></div>
+      <div class="card form-card animate-fade-up">
+        <div class="role-toggle">
+          <button type="button" class="role-btn active" data-role="seller">🏷️ Seller</button>
+          <button type="button" class="role-btn" data-role="buyer">🛒 Buyer</button>
+        </div>
+        <form id="register-form">
+          <div class="form-grid">
+            <div class="form-group"><label>Full Name</label><input id="reg-name" placeholder="Ali Khan" required></div>
+            <div class="form-group"><label>Phone</label><input id="reg-phone" placeholder="0300-1234567" required></div>
+            <div class="form-group full"><label>Email</label><input id="reg-email" type="email" placeholder="ali@email.com" required></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Register Account</button>
+          <div id="reg-toast" class="toast"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- List Property -->
+    <section id="page-list" class="page">
+      <div class="page-header"><h2>List a Property</h2><p>Sellers can post new listings to the marketplace.</p></div>
+      <div id="list-login-gate" class="card gate-card animate-fade-up hidden">
+        <div class="gate-icon">🔐</div>
+        <h3>Seller login required</h3>
+        <p>Please log in as a seller before listing a property for sale.</p>
+        <button type="button" class="btn btn-primary" data-goto="login">Go to Login</button>
+      </div>
+      <div id="list-content" class="card form-card animate-fade-up hidden">
+        <div class="logged-as" id="list-logged-as"></div>
+        <form id="add-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Property Type</label>
+              <select id="add-type" required>
+                <option value="HOUSE">House (2% commission)</option>
+                <option value="APARTMENT">Apartment (1.5%)</option>
+                <option value="PLOT">Plot (3%)</option>
+                <option value="SHOP">Shop (2.5%)</option>
+              </select>
+            </div>
+            <input id="add-seller" type="hidden">
+            <div class="form-group full"><label>Title</label><input id="add-title" placeholder="5 Marla House in DHA Phase 6" required></div>
+            <div class="form-group"><label>Location</label><input id="add-location" placeholder="DHA Phase 6, Lahore" required></div>
+            <div class="form-group"><label>Area (marla)</label><input id="add-area" type="number" step="0.1" placeholder="5" required></div>
+            <div class="form-group full"><label>Price (PKR)</label><input id="add-price" type="number" placeholder="15000000" required></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Listing</button>
+          <div id="add-toast" class="toast"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Browse -->
+    <section id="page-browse" class="page">
+      <div class="page-header"><h2>Browse Properties</h2><p>Search available listings across Lahore.</p></div>
+      <form id="search-form" class="search-bar card animate-fade-up">
+        <div class="form-group"><label>Location</label><input id="search-location" placeholder="DHA, Johar Town..."></div>
+        <div class="form-group"><label>Min Price</label><input id="search-min-price" type="number" placeholder="0"></div>
+        <div class="form-group"><label>Max Price</label><input id="search-max-price" type="number" placeholder="Any"></div>
+        <div class="form-group"><label>Min Area</label><input id="search-min-area" type="number" step="0.1" placeholder="0"></div>
+        <div class="form-group"><label>Max Area</label><input id="search-max-area" type="number" step="0.1" placeholder="Any"></div>
+        <div class="form-group">
+          <label>Type</label>
+          <select id="search-type">
+            <option value="">All Types</option>
+            <option value="HOUSE">House</option>
+            <option value="APARTMENT">Apartment</option>
+            <option value="PLOT">Plot</option>
+            <option value="SHOP">Shop</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      <div id="search-toast" class="toast"></div>
+      <div id="property-grid" class="property-grid"></div>
+    </section>
+
+    <!-- Record Deal -->
+    <section id="page-deal" class="page">
+      <div class="page-header"><h2>Record a Deal</h2><p>Complete a buy or rent transaction for an available property.</p></div>
+      <div id="deal-login-gate" class="card gate-card animate-fade-up hidden">
+        <div class="gate-icon">🔐</div>
+        <h3>Buyer login required</h3>
+        <p>Please log in as a buyer before purchasing or renting a property.</p>
+        <button type="button" class="btn btn-primary" data-goto="login">Go to Login</button>
+      </div>
+      <div id="deal-content" class="card form-card animate-fade-up hidden">
+        <div class="logged-as" id="deal-logged-as"></div>
+        <form id="deal-form">
+          <div class="form-grid">
+            <div class="form-group"><label>Property ID</label><input id="deal-property" type="number" placeholder="e.g. 3" required></div>
+            <input id="deal-buyer" type="hidden">
+            <div class="form-group full">
+              <label>Deal Type</label>
+              <select id="deal-type" required>
+                <option value="BUY">Buy (marks as SOLD)</option>
+                <option value="RENT">Rent (marks as RENTED)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Complete Deal</button>
+          <div id="deal-toast" class="toast"></div>
+        </form>
+        <div class="info-box">
+          <strong>Commission Rates</strong>
+          <ul>
+            <li>House — 2% &nbsp;|&nbsp; Apartment — 1.5%</li>
+            <li>Plot — 3% &nbsp;|&nbsp; Shop — 2.5%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manage Rentals -->
+    <section id="page-rentals" class="page">
+      <div class="page-header">
+        <h2>Manage Rentals</h2>
+        <p>Renew monthly rent for tenants or end a lease and put the property back on sale.</p>
+      </div>
+      <div id="rentals-toast" class="toast"></div>
+      <div id="rentals-grid" class="rentals-grid"></div>
+    </section>
+
+    <!-- History -->
+    <section id="page-history" class="page">
+      <div class="page-header">
+        <h2>Transaction History</h2>
+        <p>All completed deals with amounts and commissions.</p>
+      </div>
+      <div class="table-wrap animate-fade-up">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Property</th><th>Buyer</th><th>Seller</th>
+              <th>Type</th><th>Amount</th><th>Commission</th><th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="8" class="empty">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Loading overlay -->
+<div id="loading-screen" class="loading-screen hidden">
+  <div class="loading-content">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading...</p>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

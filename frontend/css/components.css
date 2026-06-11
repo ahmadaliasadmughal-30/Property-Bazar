@@ -1,0 +1,496 @@
+/* ── Cards ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition: var(--transition);
+}
+
+.stat-card:hover { transform: translateY(-2px); border-color: var(--border-glow); }
+
+.stat-card .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.stat-card .value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+  letter-spacing: -0.03em;
+  animation: countPop 0.6s ease both;
+}
+
+.stat-card .value.accent { color: var(--accent-2); }
+.stat-card .value.gold   { color: var(--gold); }
+.stat-card .value.info   { color: var(--info); }
+
+/* ── Forms ── */
+.form-card { max-width: 720px; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group.full { grid-column: 1 / -1; }
+
+label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+input, select, textarea {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: var(--transition);
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+input::placeholder { color: var(--text-dim); }
+
+select option { background: var(--bg-card); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #059669);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+}
+
+.btn-sm { padding: 0.5rem 1rem; font-size: 0.8rem; }
+
+/* ── Messages ── */
+.toast {
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  display: none;
+  animation: fadeUp 0.3s ease both;
+}
+
+.toast.show { display: block; }
+.toast.success { background: rgba(16,185,129,0.12); color: var(--accent-2); border: 1px solid var(--border-glow); }
+.toast.error   { background: rgba(239,68,68,0.12);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+
+/* ── Property cards ── */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.property-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: default;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow);
+}
+
+.property-card .card-top {
+  height: 120px;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-base));
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  position: relative;
+}
+
+.property-card .type-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--accent-dim);
+  color: var(--accent-2);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-glow);
+}
+
+.property-card .card-icon { font-size: 2.5rem; opacity: 0.5; }
+
+.property-card .card-body { padding: 1.25rem; }
+
+.property-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.property-card .location {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.property-card .meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.property-card .price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent-2);
+}
+
+.property-card .commission {
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-top: 0.25rem;
+}
+
+/* ── Table ── */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead { background: var(--bg-elevated); }
+
+th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-buy  { background: rgba(56,189,248,0.15); color: var(--info); }
+.badge-rent { background: rgba(245,158,11,0.15); color: var(--gold); }
+
+/* ── Empty state ── */
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-dim);
+}
+
+.empty .empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.4; }
+
+/* ── Role toggle ── */
+.role-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.role-btn {
+  flex: 1;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-base);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.role-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--border-glow);
+  color: var(--accent-2);
+}
+
+/* ── Search bar ── */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-end;
+}
+
+.search-bar .form-group { flex: 1; min-width: 140px; }
+
+/* ── Commission info box ── */
+.info-box {
+  background: var(--accent-dim);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.info-box strong { color: var(--accent-2); }
+
+.info-box ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.info-box li { margin-bottom: 0.2rem; }
+
+/* ── Login role toggle ── */
+.login-role-btn {
+  flex: 1;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-base);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.login-role-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--border-glow);
+  color: var(--accent-2);
+}
+
+/* ── Auth gates ── */
+.gate-card {
+  max-width: 480px;
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.gate-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.gate-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.gate-card p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.logged-as {
+  background: var(--accent-dim);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--accent-2);
+  font-weight: 600;
+}
+
+/* ── Session badges ── */
+.session-badge {
+  font-size: 0.72rem;
+  color: var(--accent-2);
+  padding: 0.3rem 0;
+  font-weight: 600;
+}
+
+.session-badge.hidden,
+.hidden { display: none !important; }
+
+.footer-meta {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* ── Rental cards ── */
+.rentals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.rental-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.rental-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow);
+}
+
+.rental-card .card-top {
+  height: 100px;
+  background: linear-gradient(135deg, rgba(245,158,11,0.08), var(--bg-base));
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  position: relative;
+}
+
+.rental-card .type-badge.rented {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: rgba(245,158,11,0.15);
+  color: var(--gold);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245,158,11,0.3);
+}
+
+.rental-card .card-body { padding: 1.25rem; }
+
+.rental-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.tenant-info {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0.75rem 0 0.5rem;
+}
+
+.rent-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.rental-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-danger {
+  background: rgba(239,68,68,0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(239,68,68,0.3);
+}
+
+.btn-danger:hover {
+  background: rgba(239,68,68,0.25);
+  transform: translateY(-1px);
+}

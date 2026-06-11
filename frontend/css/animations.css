@@ -1,0 +1,112 @@
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+  50%      { box-shadow: 0 0 40px rgba(16, 185, 129, 0.3); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes countPop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-up   { animation: fadeUp 0.6s ease both; }
+.animate-fade-in   { animation: fadeIn 0.5s ease both; }
+.animate-slide     { animation: slideRight 0.5s ease both; }
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+.stagger > *:nth-child(1) { animation: fadeUp 0.5s ease 0.05s both; }
+.stagger > *:nth-child(2) { animation: fadeUp 0.5s ease 0.12s both; }
+.stagger > *:nth-child(3) { animation: fadeUp 0.5s ease 0.19s both; }
+.stagger > *:nth-child(4) { animation: fadeUp 0.5s ease 0.26s both; }
+.stagger > *:nth-child(5) { animation: fadeUp 0.5s ease 0.33s both; }
+.stagger > *:nth-child(6) { animation: fadeUp 0.5s ease 0.40s both; }
+
+.page-enter {
+  animation: fadeUp 0.45s ease both;
+}
+
+.hero-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.logo-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Loading screen ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 20, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease both;
+}
+
+.loading-screen.hidden {
+  display: none;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.loading-spinner.small {
+  width: 28px;
+  height: 28px;
+  border-width: 2px;
+}
+
+.loading-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
